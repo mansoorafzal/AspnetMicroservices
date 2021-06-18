@@ -26,4 +26,24 @@ docker images
 docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d
 docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml down
 
+docker ps -aq
+docker stop $(docker ps -aq)
+docker rm $(docker ps -aq)
+docker rmi $(docker images -aq)
+docker system prune
+
+docker run -d -p 3000:3000 mongoclient/mongoclient
+
+Stop the container(s) using the following command:
+docker-compose down
+
+Delete all containers using the following command:
+docker rm -f $(docker ps -a -q)
+
+Delete all volumes using the following command:
+docker volume rm $(docker volume ls -q)
+
+Restart the containers using the following command:
+docker-compose up -d
+
 
