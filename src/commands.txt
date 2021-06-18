@@ -15,3 +15,15 @@ show databases
 show collections
 
 Install-Package MongoDB.Driver
+Update-Package -ProjectName Catalog.API
+
+docker stop 18f9 -- stop container
+docker rm 18f9 -- remove container
+docker rmi 18f9 -- remove image
+docker ps
+docker images
+
+docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d
+docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml down
+
+
