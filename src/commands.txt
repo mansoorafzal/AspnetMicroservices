@@ -34,6 +34,19 @@ docker system prune
 
 docker run -d -p 3000:3000 mongoclient/mongoclient
 
+docker pull redis
+docker run -d -p 6379:6379 --name aspnetrun-redis redis
+docker logs -f aspnetrun-redis
+
+docker exec -it aspnetrun-redis /bin/bash
+redis-cli
+ping
+set key value
+get key
+
+Install-Package Microsoft.Extensions.Caching.StackExchangeRedis
+Update-Package -ProjectName Basket.API
+
 Stop the container(s) using the following command:
 docker-compose down
 
