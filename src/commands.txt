@@ -47,6 +47,8 @@ get key
 Install-Package Microsoft.Extensions.Caching.StackExchangeRedis
 Update-Package -ProjectName Basket.API
 
+****************************************************************
+
 Stop the container(s) using the following command:
 docker-compose down
 
