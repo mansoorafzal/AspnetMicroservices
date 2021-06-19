@@ -22,6 +22,7 @@ docker rm 18f9 -- remove container
 docker rmi 18f9 -- remove image
 docker ps
 docker images
+docker volume ls
 
 docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d
 docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml down
@@ -30,7 +31,9 @@ docker ps -aq
 docker stop $(docker ps -aq)
 docker rm $(docker ps -aq)
 docker rmi $(docker images -aq)
+docker volume rm portainer_data
 docker system prune
+docker volume prune
 
 docker run -d -p 3000:3000 mongoclient/mongoclient
 
@@ -46,6 +49,22 @@ get key
 
 Install-Package Microsoft.Extensions.Caching.StackExchangeRedis
 Update-Package -ProjectName Basket.API
+
+portainer credentials = admin / abcd1234
+
+CREATE TABLE Coupon(
+		ID SERIAL PRIMARY KEY         NOT NULL,
+		ProductName     VARCHAR(24) NOT NULL,
+		Description     TEXT,
+		Amount          INT
+	);
+	
+INSERT INTO Coupon (ProductName, Description, Amount) VALUES ('IPhone X', 'IPhone Discount', 150);
+INSERT INTO Coupon (ProductName, Description, Amount) VALUES ('Samsung 10', 'Samsung Discount', 100);
+
+Install-Package Npgsql
+Install-Package Dapper
+Update-Package -ProjectName Discount.API
 
 ****************************************************************
 
