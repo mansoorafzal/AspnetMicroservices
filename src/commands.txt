@@ -66,6 +66,10 @@ Install-Package Npgsql
 Install-Package Dapper
 Update-Package -ProjectName Discount.API
 
+Update-Package -ProjectName Discount.Grpc
+
+Install-Package AutoMapper.Extensions.Microsoft.DependencyInjection
+
 ****************************************************************
 
 Stop the container(s) using the following command:
