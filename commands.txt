@@ -71,6 +71,18 @@ Update-Package -ProjectName Discount.Grpc
 
 Install-Package AutoMapper.Extensions.Microsoft.DependencyInjection
 
+Install-Package MediatR.Extensions.Microsoft.DependencyInjection
+
+Install-Package AutoMapper.Extensions.Microsoft.DependencyInjection
+
+Install-Package FluentValidation.DependencyInjectionExtensions
+
+Install-Package Microsoft.EntityFrameworkCore.SqlServer
+
+Install-Package Microsoft.EntityFrameworkCore.Tools
+
+Add-Migration InitialCreate
+
 ****************************************************************
 
 Stop the container(s) using the following command:
