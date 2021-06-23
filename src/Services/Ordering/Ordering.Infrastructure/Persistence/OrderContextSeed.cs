@@ -24,7 +24,7 @@ namespace Ordering.Infrastructure.Persistence
         {
             return new List<Order>
             {
-                new Order() {UserName = "mah", FirstName = "Mansoor", LastName = "Afzal", EmailAddress = "mansoor.afzal@veripark.com", AddressLine = "Sharjah", Country = "United Arab Emirates", TotalPrice = 350 }
+                new Order() {UserName = "admin", FirstName = "Mansoor", LastName = "Administrator", EmailAddress = "mansoor@email.com", AddressLine = "London", Country = "United Kingdom", TotalPrice = 350 }
             };
         }
     }
