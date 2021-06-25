@@ -83,7 +83,13 @@ Install-Package Microsoft.EntityFrameworkCore.Tools
 
 Add-Migration InitialCreate
 
+Install-Package MassTransit
+Install-Package MassTransit.RabbitMQ
+Install-Package MassTransit.AspNetCore
 
+Update-Package -ProjectName Basket.API
+
+Update-Package -ProjectName Ordering.API
 
 ****************************************************************
 
