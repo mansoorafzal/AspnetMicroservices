@@ -91,6 +91,10 @@ Update-Package -ProjectName Basket.API
 
 Update-Package -ProjectName Ordering.API
 
+Install-Package Ocelot
+
+Update-Package -ProjectName OcelotApiGw
+
 ****************************************************************
 
 Stop the container(s) using the following command:
