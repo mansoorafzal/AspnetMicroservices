@@ -1,7 +1,75 @@
-docker pull mongo
-docker run -d -p 27017:27017 --name shopping-mongo mongo
-docker logs -f shopping-mongo
+/* create and run all containers */
+docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d
 
+/* stop and remove all running containers */
+docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml down
+
+/* build and run all running containers */
+docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up --build
+
+/* display the list of all running containers */
+docker ps
+
+/* display the list of all images */
+docker images
+
+/* display the list of all volumes */
+docker volume ls
+
+/* stop container */
+docker stop << First 4 Characters of Container ID >>
+
+/* remove container */
+docker rm << First 4 Characters of Container ID >>
+
+/* remove image */
+docker rmi << First 4 Characters of Image ID >>
+
+/* remove volume */
+docker volume rm << Volume Name >>
+
+/* stop all containers */
+docker stop $(docker ps -a -q)
+
+/* remove all containers */
+docker rm -f $(docker ps -a -q)
+
+/* remove all images */
+docker rmi $(docker images -a -q)
+
+/* remove all volumes */
+docker volume rm $(docker volume ls -q)
+
+/* remove all unused containers and images */
+docker system prune
+
+/* remove all unused volumnes */
+docker volume prune
+
+********************************************************************************************
+
+Install-Package << Package Name >>
+Install-Package Microsoft.Extensions.Caching.StackExchangeRedis
+Install-Package Npgsql
+Install-Package Dapper
+Install-Package AutoMapper.Extensions.Microsoft.DependencyInjection
+Install-Package MediatR.Extensions.Microsoft.DependencyInjection
+Install-Package AutoMapper.Extensions.Microsoft.DependencyInjection
+Install-Package FluentValidation.DependencyInjectionExtensions
+Install-Package Microsoft.EntityFrameworkCore.SqlServer
+Install-Package Microsoft.EntityFrameworkCore.Tools
+Install-Package MassTransit
+Install-Package MassTransit.RabbitMQ
+Install-Package MassTransit.AspNetCore
+Install-Package Ocelot
+Install-Package Ocelot.Cache.CacheManager
+
+Update-Package -ProjectName << Project Name >>
+Add-Migration InitialCreate
+
+********************************************************************************************
+
+/* mongo bash commands */
 docker exec -it shopping-mongo /bin/bash
 ls
 mongo
@@ -14,101 +82,25 @@ db.Products.remove({})
 show databases
 show collections
 
-Install-Package MongoDB.Driver
-Update-Package -ProjectName Catalog.API
-
-docker stop 18f9 -- stop container
-docker rm 18f9 -- remove container
-docker rmi 18f9 -- remove image
-docker ps
-docker images
-docker volume ls
-
-docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d
-docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml down
-docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up --build
-
-docker ps -aq
-docker stop $(docker ps -aq)
-docker rm $(docker ps -aq)
-docker rmi $(docker images -aq)
-docker volume rm portainer_data
-docker system prune
-docker volume prune
-
-docker run -d -p 3000:3000 mongoclient/mongoclient
-
-docker pull redis
-docker run -d -p 6379:6379 --name aspnetrun-redis redis
-docker logs -f aspnetrun-redis
-
+/* redis bash commands */
 docker exec -it aspnetrun-redis /bin/bash
 redis-cli
 ping
 set key value
 get key
 
-Install-Package Microsoft.Extensions.Caching.StackExchangeRedis
-Update-Package -ProjectName Basket.API
-
-portainer credentials = admin / abcd1234
-
+/* database scripts */
 CREATE TABLE Coupon(
-		ID SERIAL PRIMARY KEY         NOT NULL,
-		ProductName     VARCHAR(24) NOT NULL,
-		Description     TEXT,
-		Amount          INT
-	);
-	
+	ID SERIAL PRIMARY KEY         NOT NULL,
+	ProductName     VARCHAR(24) NOT NULL,
+	Description     TEXT,
+	Amount          INT
+);
 INSERT INTO Coupon (ProductName, Description, Amount) VALUES ('IPhone X', 'IPhone Discount', 150);
 INSERT INTO Coupon (ProductName, Description, Amount) VALUES ('Samsung 10', 'Samsung Discount', 100);
 
-Install-Package Npgsql
-Install-Package Dapper
-Update-Package -ProjectName Discount.API
+/* credentials */
+portainer = admin / abcd1234
+rabbitmq = guest / guest
 
-Update-Package -ProjectName Discount.Grpc
-
-Install-Package AutoMapper.Extensions.Microsoft.DependencyInjection
-
-Install-Package MediatR.Extensions.Microsoft.DependencyInjection
-
-Install-Package AutoMapper.Extensions.Microsoft.DependencyInjection
-
-Install-Package FluentValidation.DependencyInjectionExtensions
-
-Install-Package Microsoft.EntityFrameworkCore.SqlServer
-
-Install-Package Microsoft.EntityFrameworkCore.Tools
-
-Add-Migration InitialCreate
-
-Install-Package MassTransit
-Install-Package MassTransit.RabbitMQ
-Install-Package MassTransit.AspNetCore
-
-Update-Package -ProjectName Basket.API
-
-Update-Package -ProjectName Ordering.API
-
-Install-Package Ocelot
-
-Update-Package -ProjectName OcelotApiGw
-
-Install-Package Ocelot.Cache.CacheManager
-
-****************************************************************
-
-Stop the container(s) using the following command:
-docker-compose down
-
-Delete all containers using the following command:
-docker rm -f $(docker ps -a -q)
-
-Delete all volumes using the following command:
-docker volume rm $(docker volume ls -q)
-
-Restart the containers using the following command:
-docker-compose up -d
-
-
+********************************************************************************************
