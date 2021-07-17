@@ -34,3 +34,7 @@ Ports:
 <br> Shopping Aggregator = 5005, 8005
 <br> Web Application = 5006, 8006
 <br> Ocelot Api Gateway = 5010, 8010
+<br> MongoDB Client = 3000
+<br> pgAdmin4 = 5050 (admin@aspnetrun.com / abcd1234)
+<br> Portainer = 9000 (admin / abcd1234)
+<br> RabbitMQ = 15672 (guest / guest)
