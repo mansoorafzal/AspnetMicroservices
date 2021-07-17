@@ -8,16 +8,20 @@ It includes following packages:
 <br> FluentValidation
 <br> FluentValidation.DependencyInjectionExtensions
 <br> Grpc.AspNetCore
+<br> IdentityServer4
+<br> IdentityServer4.EntityFramework
 <br> MassTransit
 <br> MassTransit.AspNetCore
 <br> MassTransit.RabbitMQ
 <br> MediatR.Extensions.Microsoft.DependencyInjection
 <br> Microsoft.EntityFrameworkCore.SqlServer
+<br> Microsoft.EntityFrameworkCore.Design
 <br> Microsoft.EntityFrameworkCore.Tools
 <br> Microsoft.Extensions.Caching.StackExchangeRedis
 <br> Microsoft.Extensions.Logging.Abstractions
 <br> Microsoft.VisualStudio.Azure.Containers.Tools.Targets
 <br> MongoDB.Driver
+<br> MySql.EntityFrameworkCore
 <br> Newtonsoft.Json
 <br> Npgsql
 <br> Ocelot
@@ -34,9 +38,10 @@ Ports:
 <br> Shopping Aggregator = 8005
 <br> Web Application = 8006
 <br> Ocelot Api Gateway = 8010
+<br> Identify Server = 8015
 <br> MongoDB Client = 3000
-<br> pgAdmin4 = 5050 (admin@aspnetrun.com / abcd1234)
-<br> Portainer = 9000 (admin / abcd1234)
+<br> pgAdmin4 = 5050 (admin@aspnetrun.com / Abcd1234)
+<br> Portainer = 9000 (admin / Abcd1234)
 <br> RabbitMQ = 15672 (guest / guest)
 
 To start, run below command: 

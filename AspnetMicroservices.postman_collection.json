@@ -1,10 +1,35 @@
 {
 	"info": {
 		"_postman_id": "6954d9a7-a907-40d7-af6a-39e1928c9cab",
-		"name": "Microservices.Net",
+		"name": "AspnetMicroservices",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Identity Server",
+			"item": [
+				{
+					"name": "OpenId Configuration",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8015/.well-known/openid-configuration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8015",
+							"path": [
+								".well-known",
+								"openid-configuration"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "GET Catalog",
 			"request": {

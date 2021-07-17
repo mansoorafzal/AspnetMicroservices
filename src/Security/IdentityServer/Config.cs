@@ -1,4 +1,5 @@
-﻿using IdentityServer4;
+﻿using Common;
+using IdentityServer4;
 using IdentityServer4.Models;
 using System.Collections.Generic;
 
@@ -16,11 +17,11 @@ namespace IdentityServer
                     AllowedGrantTypes = GrantTypes.Hybrid,
                     RequirePkce = false,
                     AllowRememberConsent = false,
-                    RedirectUris = new List<string>() { "https://localhost:5006/signin-oidc" },
-                    PostLogoutRedirectUris = new List<string>() { "https://localhost:5006/signout-callback-oidc" },
+                    RedirectUris = new List<string>() { "https://localhost:8006/signin-oidc" },
+                    PostLogoutRedirectUris = new List<string>() { "https://localhost:8006/signout-callback-oidc" },
                     ClientSecrets = new List<Secret>
                     {
-                        new Secret("secret".Sha256())
+                        new Secret(Constant.Client_Secret.Sha256())
                     },
                     AllowedScopes = new List<string>
                     {

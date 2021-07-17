@@ -24,7 +24,7 @@ services:
     container_name: discountdb
     environment:
       - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=abcd1234
+      - POSTGRES_PASSWORD=Abcd1234
       - POSTGRES_DB=DiscountDb
     restart: always
     ports:
@@ -36,7 +36,7 @@ services:
     container_name: pgadmin
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@aspnetrun.com
-      - PGADMIN_DEFAULT_PASSWORD=abcd1234
+      - PGADMIN_DEFAULT_PASSWORD=Abcd1234
     restart: always
     ports:
       - "5050:80"
@@ -51,6 +51,14 @@ services:
     restart: always
     ports:
       - "1433:1433"
+
+  identityserverdb:
+    container_name: identityserverdb
+    environment:
+      MYSQL_ROOT_PASSWORD: "Abcd1234"
+    restart: always
+    ports:
+      - "3306:3306"
 
   rabbitmq:
     container_name: rabbitmq
@@ -95,7 +103,7 @@ services:
     container_name: discount.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings:ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=abcd1234;"
+      - "DatabaseSettings:ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=Abcd1234;"
     depends_on:
       - discountdb
       - rabbitmq
@@ -106,7 +114,7 @@ services:
     container_name: discount.grpc
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings:ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=abcd1234;"
+      - "DatabaseSettings:ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=Abcd1234;"
     depends_on:
       - discountdb
     ports:
@@ -163,3 +171,13 @@ services:
       - ordering.api
     ports:
       - "8006:80"
+
+  identityserver:
+    container_name: identityserver
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:IdentityServerConnectionString=Server=identityserverdb;Port=3306;Database=IdentityServerDb;User Id=root;Password=Abcd1234;"
+    depends_on:
+      - identityserverdb
+    ports:
+      - "8015:80"

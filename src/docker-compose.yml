@@ -19,6 +19,9 @@ services:
   orderdb:
     image: mcr.microsoft.com/mssql/server:2017-latest
 
+  identityserverdb:
+    image: mysql
+
   rabbitmq:
     image: rabbitmq:3-management-alpine
 
@@ -73,8 +76,15 @@ services:
       context: .
       dockerfile: WebApps/AspnetRunBasics/Dockerfile
 
+  identityserver:
+    image: ${DOCKER_REGISTRY-}identityserver
+    build:
+      context: .
+      dockerfile: Security/IdentityServer/Dockerfile
+
 volumes:
   mongo_data:
   portainer_data:
   postgres_data:
   pgadmin_data:
+  
