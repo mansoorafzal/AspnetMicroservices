@@ -26,15 +26,22 @@ It includes following packages:
 <br> Swashbuckle.AspNetCore
 
 Ports:
-<br> Catalog Api = 5000, 8000
-<br> Basket Api = 5001, 8001
-<br> Discount Api = 5002, 8002
-<br> Discount Grpc = 5003, 8003
-<br> Ordering Api = 5004, 8004
-<br> Shopping Aggregator = 5005, 8005
-<br> Web Application = 5006, 8006
-<br> Ocelot Api Gateway = 5010, 8010
+<br> Catalog Api = 8000
+<br> Basket Api = 8001
+<br> Discount Api = 8002
+<br> Discount Grpc = 8003
+<br> Ordering Api = 8004
+<br> Shopping Aggregator = 8005
+<br> Web Application = 8006
+<br> Ocelot Api Gateway = 8010
 <br> MongoDB Client = 3000
 <br> pgAdmin4 = 5050 (admin@aspnetrun.com / abcd1234)
 <br> Portainer = 9000 (admin / abcd1234)
 <br> RabbitMQ = 15672 (guest / guest)
+
+To start, run below command: 
+<br> docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d
+<br> and then browse http://localhost:8006/
+
+To stop, run below command:
+<br> docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml down
