@@ -48,23 +48,24 @@ docker volume prune
 
 ********************************************************************************************
 
-Install-Package << Package Name >>
-Install-Package Microsoft.Extensions.Caching.StackExchangeRedis
-Install-Package Npgsql
-Install-Package Dapper
-Install-Package AutoMapper.Extensions.Microsoft.DependencyInjection
-Install-Package MediatR.Extensions.Microsoft.DependencyInjection
-Install-Package AutoMapper.Extensions.Microsoft.DependencyInjection
-Install-Package FluentValidation.DependencyInjectionExtensions
-Install-Package Microsoft.EntityFrameworkCore.SqlServer
-Install-Package Microsoft.EntityFrameworkCore.Tools
-Install-Package MassTransit
-Install-Package MassTransit.RabbitMQ
-Install-Package MassTransit.AspNetCore
-Install-Package Ocelot
-Install-Package Ocelot.Cache.CacheManager
-
+/* update out dated packages */
 Update-Package -ProjectName << Project Name >>
+
+/* installing quick start for identityserver4 */
+dotnet new -i identityserver4.templates
+dotnet new is4ui
+
+/* installing migration tool */
+dotnet tool install --global dotnet-ef
+
+/* create migration for identityserver4 */
+dotnet ef migrations add InitialIdentityServerPersistedGrantDbMigration -c PersistedGrantDbContext -o Data/Migrations/IdentityServer/PersistedGrantDb
+dotnet ef migrations add InitialIdentityServerConfigurationDbMigration -c ConfigurationDbContext -o Data/Migrations/IdentityServer/ConfigurationDb
+
+/* remove migrations for identityserver4 */
+ef migrations remove
+
+/* setup the migration */
 Add-Migration InitialCreate
 
 ********************************************************************************************
