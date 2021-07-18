@@ -22,6 +22,9 @@ services:
   identityserverdb:
     image: mysql
 
+  phpmyadmin:
+    image: phpmyadmin
+
   rabbitmq:
     image: rabbitmq:3-management-alpine
 
@@ -87,4 +90,5 @@ volumes:
   portainer_data:
   postgres_data:
   pgadmin_data:
+  mysql_data:
   

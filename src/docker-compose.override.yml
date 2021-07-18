@@ -59,6 +59,18 @@ services:
     restart: always
     ports:
       - "3306:3306"
+    volumes:
+     - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "Abcd1234"
+      PMA_HOST: "identityserverdb"
+      PMA_PORT: "3306"
+    ports:
+     - "8080:80"
 
   rabbitmq:
     container_name: rabbitmq
@@ -71,7 +83,6 @@ services:
     container_name: portainer
     restart: always
     ports:
-      - "8080:8000"
       - "9000:9000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

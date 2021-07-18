@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace IdentityServer
 {
@@ -31,8 +32,9 @@ namespace IdentityServer
             serviceScope.ServiceProvider.GetRequiredService<PersistedGrantDbContext>().Database.Migrate();
 
             var context = serviceScope.ServiceProvider.GetRequiredService<ConfigurationDbContext>();
+            var logger = serviceScope.ServiceProvider.GetRequiredService<ILogger<QuickStartContextSeed>>();
 
-            QuickStartContextSeed.SeedAsync(context);
+            QuickStartContextSeed.SeedAsync(context, logger);
         }
     }
 }
