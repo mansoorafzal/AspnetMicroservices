@@ -41,6 +41,7 @@ Ports:
 <br> Identify Server = 8015
 <br> MongoDB Client = 3000
 <br> pgAdmin4 = 5050 (admin@aspnetrun.com / Abcd1234)
+<br> phpMyAdmin = 8080 (root / Abcd1234)
 <br> Portainer = 9000 (admin / Abcd1234)
 <br> RabbitMQ = 15672 (guest / guest)
 
