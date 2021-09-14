@@ -1,5 +1,5 @@
 # Microservices
-Implementation is based on the online course on Microservices. It aims to show the working and communication amoing separate stand-alone Microservices with RabbitMQ, MassTransit, gRPC, MediatR and Ocelot.
+Implementation is based on the online course on Microservices. It aims to show the working and communication amoing separate stand-alone Microservices using different databases (MongoDB, Redis, PostgreSQL, MySQL, SQL Server) and integrating with RabbitMQ, MassTransit, gRPC, MediatR, Ocelot, Elasticsearch and Kibana.
 
 It includes following packages:
 <br> AutoMapper
