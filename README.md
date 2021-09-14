@@ -27,6 +27,9 @@ It includes following packages:
 <br> Ocelot
 <br> Ocelot.Cache.CacheManager
 <br> SendGrid
+<br> Serilog.AspNetCore
+<br> Serilog.Enrichers.Environment
+<br> Serilog.Sinks.Elasticsearch
 <br> Swashbuckle.AspNetCore
 
 Ports:
@@ -41,8 +44,10 @@ Ports:
 <br> Identify Server = 8015
 <br> MongoDB Client = 3000
 <br> pgAdmin4 = 5050 (admin@aspnetrun.com / Abcd1234)
+<br> Kibana = 5601
 <br> phpMyAdmin = 8080 (root / Abcd1234)
 <br> Portainer = 9000 (admin / Abcd1234)
+<br> Elasticsearch = 9200
 <br> RabbitMQ = 15672 (guest / guest)
 
 To start, run below command: 
