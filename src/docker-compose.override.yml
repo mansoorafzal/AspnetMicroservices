@@ -196,6 +196,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "ConnectionStrings:IdentityServerConnectionString=Server=identityserverdb;Port=3306;Database=IdentityServerDb;User Id=root;Password=Abcd1234;"
+      - "ElasticConfiguration:Uri=http://elasticsearch"
     depends_on:
       - identityserverdb
     ports:

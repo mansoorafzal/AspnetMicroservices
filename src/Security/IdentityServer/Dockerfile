@@ -7,6 +7,7 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["Security/IdentityServer/IdentityServer.csproj", "Security/IdentityServer/"]
+COPY ["BuildingBlocks/Common.Logging/Common.Logging.csproj", "BuildingBlocks/Common.Logging/"]
 COPY ["BuildingBlocks/Common/Common.csproj", "BuildingBlocks/Common/"]
 RUN dotnet restore "Security/IdentityServer/IdentityServer.csproj"
 COPY . .
