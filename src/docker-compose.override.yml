@@ -93,7 +93,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=mongodb://catalogdb:27017"
-      - "ElasticConfiguration:Uri=http://elasticsearch"
+      - "ElasticConfiguration:Uri=http://elasticsearch:9200"
     depends_on:
       - catalogdb
     ports:
@@ -106,7 +106,7 @@ services:
       - "CacheSettings:ConnectionString=basketdb:6379"
       - "GrpcSettings:DiscountUrl=http://discount.grpc"
       - "EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672"
-      - "ElasticConfiguration:Uri=http://elasticsearch"
+      - "ElasticConfiguration:Uri=http://elasticsearch:9200"
     depends_on:
       - basketdb
     ports:
@@ -117,7 +117,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=Abcd1234;"
-      - "ElasticConfiguration:Uri=http://elasticsearch"
+      - "ElasticConfiguration:Uri=http://elasticsearch:9200"
     depends_on:
       - discountdb
       - rabbitmq
@@ -129,7 +129,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=Abcd1234;"
-      - "ElasticConfiguration:Uri=http://elasticsearch"
+      - "ElasticConfiguration:Uri=http://elasticsearch:9200"
     depends_on:
       - discountdb
     ports:
@@ -141,7 +141,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - "ConnectionStrings:OrderingConnectionString=Server=orderdb;Database=OrderDb;User Id=sa;Password=Abcd1234;"
       - "EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672"
-      - "ElasticConfiguration:Uri=http://elasticsearch"
+      - "ElasticConfiguration:Uri=http://elasticsearch:9200"
     depends_on:
       - orderdb
       - rabbitmq
@@ -152,7 +152,7 @@ services:
     container_name: ocelotapigw
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "ElasticConfiguration:Uri=http://elasticsearch"
+      - "ElasticConfiguration:Uri=http://elasticsearch:9200"
     depends_on:
       - catalog.api
       - basket.api
@@ -168,7 +168,7 @@ services:
       - "ApiSettings:CatalogUrl=http://catalog.api"
       - "ApiSettings:BasketUrl=http://basket.api"
       - "ApiSettings:OrderingUrl=http://ordering.api"
-      - "ElasticConfiguration:Uri=http://elasticsearch"
+      - "ElasticConfiguration:Uri=http://elasticsearch:9200"
     depends_on:
       - catalog.api
       - basket.api
@@ -181,7 +181,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "ApiSettings:GatewayAddress=http://ocelotapigw"
-      - "ElasticConfiguration:Uri=http://elasticsearch"
+      - "ElasticConfiguration:Uri=http://elasticsearch:9200"
     depends_on:
       - ocelotapigw
       - catalog.api
@@ -196,7 +196,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "ConnectionStrings:IdentityServerConnectionString=Server=identityserverdb;Port=3306;Database=IdentityServerDb;User Id=root;Password=Abcd1234;"
-      - "ElasticConfiguration:Uri=http://elasticsearch"
+      - "ElasticConfiguration:Uri=http://elasticsearch:9200"
     depends_on:
       - identityserverdb
     ports:
@@ -217,7 +217,7 @@ services:
   kibana:
     container_name: kibana
     environment:
-        - ELASTICSEARCH_URL=http://elasticsearch
+        - ELASTICSEARCH_URL=http://elasticsearch:9200
     depends_on:
         - elasticsearch
     ports:
