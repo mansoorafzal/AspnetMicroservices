@@ -18,6 +18,7 @@ It includes following packages:
 <br> Microsoft.EntityFrameworkCore.Design
 <br> Microsoft.EntityFrameworkCore.Tools
 <br> Microsoft.Extensions.Caching.StackExchangeRedis
+<br> Microsoft.Extensions.Http.Polly
 <br> Microsoft.Extensions.Logging.Abstractions
 <br> Microsoft.VisualStudio.Azure.Containers.Tools.Targets
 <br> MongoDB.Driver
