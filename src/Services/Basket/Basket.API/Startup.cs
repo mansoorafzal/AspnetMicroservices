@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using RabbitMQ.Client;
 using System;
 
 namespace Basket.API
@@ -55,7 +56,17 @@ namespace Basket.API
 
             services
                 .AddHealthChecks()
-                .AddRedis(Configuration["CacheSettings:ConnectionString"], "Basket Redis Health", HealthStatus.Degraded);
+                .AddRedis(Configuration["CacheSettings:ConnectionString"], "Basket Redis Health", HealthStatus.Degraded)
+                .AddRabbitMQ(_ => 
+                {
+                    var factory = new ConnectionFactory()
+                    {
+                        Uri = new Uri(Configuration["EventBusSettings:HostAddress"]),
+                        AutomaticRecoveryEnabled = true
+                    };
+
+                    return factory.CreateConnection();
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

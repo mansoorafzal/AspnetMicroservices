@@ -12,6 +12,8 @@ using Ordering.API.EventBusConsumer;
 using Ordering.Application;
 using Ordering.Infrastructure;
 using Ordering.Infrastructure.Persistence;
+using RabbitMQ.Client;
+using System;
 
 namespace Ordering.API
 {
@@ -54,7 +56,17 @@ namespace Ordering.API
 
             services
                 .AddHealthChecks()
-                .AddDbContextCheck<OrderContext>();
+                .AddDbContextCheck<OrderContext>()
+                .AddRabbitMQ(_ =>
+                {
+                    var factory = new ConnectionFactory()
+                    {
+                        Uri = new Uri(Configuration["EventBusSettings:HostAddress"]),
+                        AutomaticRecoveryEnabled = true
+                    };
+
+                    return factory.CreateConnection();
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
