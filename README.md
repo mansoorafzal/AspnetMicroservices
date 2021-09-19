@@ -8,6 +8,7 @@ It includes following packages:
 <br> AspNetCore.HealthChecks.MongoDb
 <br> AspNetCore.HealthChecks.MySql
 <br> AspNetCore.HealthChecks.NpgSql
+<br> AspNetCore.HealthChecks.Rabbitmq
 <br> AspNetCore.HealthChecks.Redis
 <br> AspNetCore.HealthChecks.UI.Client
 <br> AspNetCore.HealthChecks.Uris
