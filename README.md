@@ -1,7 +1,17 @@
 # Microservices
-Implementation is based on the online course on Microservices. It aims to show the working and communication among separate stand-alone Microservices with different databases (MongoDB, Redis, PostgreSQL, MySQL, SQL Server) using RabbitMQ, MassTransit, gRPC, MediatR, Ocelot, Elasticsearch, Kibana and Polly.
+Implementation is based on the online course on Microservices. It aims to show the working and communication among separate stand-alone Microservices. Each microservice has its own database which includes MongoDB, Redis, PostgreSQL, MySQL and SQL Server. These microservices use event driven communication with RabbitMQ via MassTransit. API Gateway is based on Ocelot. Elasticsearch and Kibana is used for observability and distributed logging. Resilience is implemented with Polly. Portainer is setup to view the status of running Docker containers.
+
+Security will be implemented through IdentityServer4, JSON Web Token, OpenID Connect, Identity Model and OAuth 2.
+Build pipeline will be setup using Azure Container Registry, Kubernetes, Azure Kubernetes Service and Azure DevOps.
 
 It includes following packages:
+<br> AspNetCore.HealthChecks.MongoDb
+<br> AspNetCore.HealthChecks.MySql
+<br> AspNetCore.HealthChecks.NpgSql
+<br> AspNetCore.HealthChecks.Rabbitmq
+<br> AspNetCore.HealthChecks.Redis
+<br> AspNetCore.HealthChecks.UI.Client
+<br> AspNetCore.HealthChecks.Uris
 <br> AutoMapper
 <br> AutoMapper.Extensions.Microsoft.DependencyInjection
 <br> Dapper
@@ -18,6 +28,7 @@ It includes following packages:
 <br> Microsoft.EntityFrameworkCore.Design
 <br> Microsoft.EntityFrameworkCore.Tools
 <br> Microsoft.Extensions.Caching.StackExchangeRedis
+<br> Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore
 <br> Microsoft.Extensions.Http.Polly
 <br> Microsoft.Extensions.Logging.Abstractions
 <br> Microsoft.VisualStudio.Azure.Containers.Tools.Targets
