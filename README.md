@@ -10,7 +10,9 @@ It includes following packages:
 <br> AspNetCore.HealthChecks.NpgSql
 <br> AspNetCore.HealthChecks.Rabbitmq
 <br> AspNetCore.HealthChecks.Redis
+<br> AspNetCore.HealthChecks.UI
 <br> AspNetCore.HealthChecks.UI.Client
+<br> AspNetCore.HealthChecks.UI.InMemory.Storage
 <br> AspNetCore.HealthChecks.Uris
 <br> AutoMapper
 <br> AutoMapper.Extensions.Microsoft.DependencyInjection
