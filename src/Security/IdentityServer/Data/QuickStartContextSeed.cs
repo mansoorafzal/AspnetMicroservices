@@ -2,6 +2,8 @@
 using IdentityServer4.EntityFramework.Mappers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using MySql.Data.MySqlClient;
+using Polly;
 using System;
 using System.Linq;
 
@@ -9,57 +11,63 @@ namespace IdentityServer.Data
 {
     public class QuickStartContextSeed
     {
-        public static void SeedAsync(ConfigurationDbContext context, ILogger<QuickStartContextSeed> logger, int? retry = 0)
+        public static void SeedAsync(ConfigurationDbContext context, ILogger<QuickStartContextSeed> logger)
         {
-            int retryForAvailability = retry.Value;
-
             try
             {
                 logger.LogInformation("Migrating mysql database.");
 
-                context.Database.Migrate();
+                var retry = Policy.Handle<MySqlException>()
+                            .WaitAndRetry(
+                                retryCount: 5,
+                                sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
+                                onRetry: (exception, retryCount, context) =>
+                                {
+                                    logger.LogError($"Retry {retryCount} of {context.PolicyKey} at {context.OperationKey}, due to: {exception}.");
+                                });
 
-                if (!context.Clients.Any())
-                {
-                    foreach (var client in Config.Clients)
-                    {
-                        context.Clients.Add(client.ToEntity());
-                    }
+                retry.Execute(() => ExecuteMigrations(context));
 
-                    context.SaveChanges();
-                }
-
-                if (!context.IdentityResources.Any())
-                {
-                    foreach (var resource in Config.IdentityResources)
-                    {
-                        context.IdentityResources.Add(resource.ToEntity());
-                    }
-
-                    context.SaveChanges();
-                }
-
-                if (!context.ApiScopes.Any())
-                {
-                    foreach (var resource in Config.ApiScopes)
-                    {
-                        context.ApiScopes.Add(resource.ToEntity());
-                    }
-
-                    context.SaveChanges();
-                }
+                logger.LogInformation("Migrated mysql database.");
             }
-            catch (Exception ex)
+            catch (MySqlException ex)
             {
                 logger.LogError(ex, "An error occurred while migrating the mysql database");
+            }
+        }
 
-                if (retryForAvailability < 50)
+        private static void ExecuteMigrations(ConfigurationDbContext context)
+        {
+            context.Database.Migrate();
+
+            if (!context.Clients.Any())
+            {
+                foreach (var client in Config.Clients)
                 {
-                    retryForAvailability++;
-
-                    System.Threading.Thread.Sleep(2000);
-                    SeedAsync(context, logger, retryForAvailability);
+                    context.Clients.Add(client.ToEntity());
                 }
+
+                context.SaveChanges();
+            }
+
+            if (!context.IdentityResources.Any())
+            {
+                foreach (var resource in Config.IdentityResources)
+                {
+                    context.IdentityResources.Add(resource.ToEntity());
+                }
+
+                context.SaveChanges();
+            }
+
+            if (!context.ApiScopes.Any())
+            {
+                foreach (var resource in Config.ApiScopes)
+                {
+                    context.ApiScopes.Add(resource.ToEntity());
+                }
+
+                context.SaveChanges();
             }
         }
     }
