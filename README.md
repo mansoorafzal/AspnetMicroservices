@@ -27,6 +27,7 @@ It includes following packages:
 <br> Npgsql
 <br> Ocelot
 <br> Ocelot.Cache.CacheManager
+<br> Polly
 <br> SendGrid
 <br> Serilog.AspNetCore
 <br> Serilog.Enrichers.Environment
