@@ -2,6 +2,12 @@
 Implementation is based on the online course on Microservices. It aims to show the working and communication among separate stand-alone Microservices with different databases (MongoDB, Redis, PostgreSQL, MySQL, SQL Server) using RabbitMQ, MassTransit, gRPC, MediatR, Ocelot, Elasticsearch, Kibana and Polly.
 
 It includes following packages:
+<br> AspNetCore.HealthChecks.MongoDb
+<br> AspNetCore.HealthChecks.MySql
+<br> AspNetCore.HealthChecks.NpgSql
+<br> AspNetCore.HealthChecks.Redis
+<br> AspNetCore.HealthChecks.UI.Client
+<br> AspNetCore.HealthChecks.Uris
 <br> AutoMapper
 <br> AutoMapper.Extensions.Microsoft.DependencyInjection
 <br> Dapper
@@ -18,6 +24,7 @@ It includes following packages:
 <br> Microsoft.EntityFrameworkCore.Design
 <br> Microsoft.EntityFrameworkCore.Tools
 <br> Microsoft.Extensions.Caching.StackExchangeRedis
+<br> Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore
 <br> Microsoft.Extensions.Http.Polly
 <br> Microsoft.Extensions.Logging.Abstractions
 <br> Microsoft.VisualStudio.Azure.Containers.Tools.Targets
