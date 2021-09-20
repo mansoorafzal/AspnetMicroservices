@@ -2,41 +2,14 @@
 using IdentityServer4.EntityFramework.Mappers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using MySqlConnector;
-using Polly;
-using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace IdentityServer.Data
 {
     public class QuickStartContextSeed
     {
-        public static void SeedAsync(ConfigurationDbContext context, ILogger<QuickStartContextSeed> logger)
-        {
-            try
-            {
-                logger.LogInformation("Migrating mysql database.");
-
-                var retry = Policy.Handle<MySqlException>()
-                            .WaitAndRetry(
-                                retryCount: 5,
-                                sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
-                                onRetry: (exception, retryCount, context) =>
-                                {
-                                    logger.LogError($"Retry {retryCount} of {context.PolicyKey} at {context.OperationKey}, due to: {exception}.");
-                                });
-
-                retry.Execute(() => ExecuteMigrations(context));
-
-                logger.LogInformation("Migrated mysql database.");
-            }
-            catch (MySqlException ex)
-            {
-                logger.LogError(ex, "An error occurred while migrating the mysql database");
-            }
-        }
-
-        private static void ExecuteMigrations(ConfigurationDbContext context)
+        public static async Task SeedAsync(ConfigurationDbContext context, ILogger<QuickStartContextSeed> logger)
         {
             context.Database.Migrate();
 
@@ -47,7 +20,7 @@ namespace IdentityServer.Data
                     context.Clients.Add(client.ToEntity());
                 }
 
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
 
             if (!context.IdentityResources.Any())
@@ -57,7 +30,7 @@ namespace IdentityServer.Data
                     context.IdentityResources.Add(resource.ToEntity());
                 }
 
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
 
             if (!context.ApiScopes.Any())
@@ -67,8 +40,10 @@ namespace IdentityServer.Data
                     context.ApiScopes.Add(resource.ToEntity());
                 }
 
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
+
+            logger.LogInformation("Seed database associated with context {DbContextName}", typeof(ConfigurationDbContext).Name);
         }
     }
 }

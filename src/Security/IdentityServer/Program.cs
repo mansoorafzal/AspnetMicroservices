@@ -1,12 +1,11 @@
 using Common.Logging;
 using IdentityServer.Data;
+using IdentityServer.Extensions;
 using IdentityServer4.EntityFramework.DbContexts;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using MySqlConnector;
 using Serilog;
 
 namespace IdentityServer
@@ -17,7 +16,12 @@ namespace IdentityServer
         {
             var host = CreateHostBuilder(args).Build();
 
-            SeedDatabase(host);
+            host.MigrateDatabase<ConfigurationDbContext>((context, services) =>
+            {
+                var logger = services.GetService<ILogger<QuickStartContextSeed>>();
+                QuickStartContextSeed.SeedAsync(context, logger).Wait();
+            });
+
             host.Run();
         }
 
@@ -28,17 +32,5 @@ namespace IdentityServer
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-
-        private static void SeedDatabase(IHost host)
-        {
-            using var serviceScope = host.Services.CreateScope();
-
-            serviceScope.ServiceProvider.GetRequiredService<PersistedGrantDbContext>().Database.Migrate();
-
-            var context = serviceScope.ServiceProvider.GetRequiredService<ConfigurationDbContext>();
-            var logger = serviceScope.ServiceProvider.GetRequiredService<ILogger<QuickStartContextSeed>>();
-
-            QuickStartContextSeed.SeedAsync(context, logger);
-        }
     }
 }

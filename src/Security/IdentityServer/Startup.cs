@@ -35,16 +35,16 @@ namespace IdentityServer
                 {
                     options.ConfigureDbContext = sql => sql.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString), mySqlOptionsAction: sqlOptions => 
                     {
-                        sqlOptions.MigrationsAssembly(migrationsAssembly);
                         sqlOptions.EnableRetryOnFailure();
+                        sqlOptions.MigrationsAssembly(migrationsAssembly);
                     });
                 })
                 .AddOperationalStore(options =>
                 {
                     options.ConfigureDbContext = sql => sql.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString), mySqlOptionsAction: sqlOptions =>
                     {
-                        sqlOptions.MigrationsAssembly(migrationsAssembly);
                         sqlOptions.EnableRetryOnFailure();
+                        sqlOptions.MigrationsAssembly(migrationsAssembly);
                     });
                 })
                 .AddDeveloperSigningCredential();
