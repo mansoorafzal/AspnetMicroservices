@@ -2,7 +2,7 @@
 using IdentityServer4.EntityFramework.Mappers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 using Polly;
 using System;
 using System.Linq;

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace IdentityServer.Data.Migrations.IdentityServer.PersistedGrantDb
+namespace IdentityServer.Data.Migrations.PersistedGrantDb
 {
     [DbContext(typeof(PersistedGrantDbContext))]
     partial class PersistedGrantDbContextModelSnapshot : ModelSnapshot
@@ -15,7 +15,7 @@ namespace IdentityServer.Data.Migrations.IdentityServer.PersistedGrantDb
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
-                .HasAnnotation("ProductVersion", "5.0.7");
+                .HasAnnotation("ProductVersion", "5.0.10");
 
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>
                 {
@@ -29,12 +29,12 @@ namespace IdentityServer.Data.Migrations.IdentityServer.PersistedGrantDb
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Data")
                         .IsRequired()
                         .HasMaxLength(50000)
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Description")
                         .HasMaxLength(200)
@@ -47,7 +47,7 @@ namespace IdentityServer.Data.Migrations.IdentityServer.PersistedGrantDb
 
                     b.Property<DateTime?>("Expiration")
                         .IsRequired()
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("SessionId")
                         .HasMaxLength(100)
@@ -79,22 +79,22 @@ namespace IdentityServer.Data.Migrations.IdentityServer.PersistedGrantDb
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("ConsumedTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Data")
                         .IsRequired()
                         .HasMaxLength(50000)
-                        .HasColumnType("text");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Description")
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("Expiration")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("SessionId")
                         .HasMaxLength(100)

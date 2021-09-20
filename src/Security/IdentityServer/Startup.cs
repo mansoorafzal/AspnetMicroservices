@@ -1,4 +1,5 @@
 using HealthChecks.UI.Client;
+using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServerHost.Quickstart.UI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -30,13 +31,21 @@ namespace IdentityServer
 
             services.AddIdentityServer()
                 .AddTestUsers(TestUsers.Users)
-                .AddConfigurationStore(options =>
+                .AddConfigurationStore<ConfigurationDbContext>(options =>
                 {
-                    options.ConfigureDbContext = b => b.UseMySQL(connectionString, sql => sql.MigrationsAssembly(migrationsAssembly));
+                    options.ConfigureDbContext = sql => sql.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString), mySqlOptionsAction: sqlOptions => 
+                    {
+                        sqlOptions.MigrationsAssembly(migrationsAssembly);
+                        sqlOptions.EnableRetryOnFailure();
+                    });
                 })
                 .AddOperationalStore(options =>
                 {
-                    options.ConfigureDbContext = b => b.UseMySQL(connectionString, sql => sql.MigrationsAssembly(migrationsAssembly));
+                    options.ConfigureDbContext = sql => sql.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString), mySqlOptionsAction: sqlOptions =>
+                    {
+                        sqlOptions.MigrationsAssembly(migrationsAssembly);
+                        sqlOptions.EnableRetryOnFailure();
+                    });
                 })
                 .AddDeveloperSigningCredential();
 

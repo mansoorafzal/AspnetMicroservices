@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace IdentityServer.Data.Migrations.IdentityServer.ConfigurationDb
+namespace IdentityServer.Data.Migrations.ConfigurationDb
 {
     [DbContext(typeof(ConfigurationDbContext))]
     partial class ConfigurationDbContextModelSnapshot : ModelSnapshot
@@ -15,7 +15,7 @@ namespace IdentityServer.Data.Migrations.IdentityServer.ConfigurationDb
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
-                .HasAnnotation("ProductVersion", "5.0.7");
+                .HasAnnotation("ProductVersion", "5.0.10");
 
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.ApiResource", b =>
                 {
@@ -28,7 +28,7 @@ namespace IdentityServer.Data.Migrations.IdentityServer.ConfigurationDb
                         .HasColumnType("varchar(100)");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
                         .HasMaxLength(1000)
@@ -42,7 +42,7 @@ namespace IdentityServer.Data.Migrations.IdentityServer.ConfigurationDb
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime?>("LastAccessed")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -56,7 +56,7 @@ namespace IdentityServer.Data.Migrations.IdentityServer.ConfigurationDb
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime?>("Updated")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -144,14 +144,14 @@ namespace IdentityServer.Data.Migrations.IdentityServer.ConfigurationDb
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
                         .HasMaxLength(1000)
                         .HasColumnType("varchar(1000)");
 
                     b.Property<DateTime?>("Expiration")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Type")
                         .IsRequired()
@@ -324,7 +324,7 @@ namespace IdentityServer.Data.Migrations.IdentityServer.ConfigurationDb
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
                         .HasMaxLength(1000)
@@ -353,7 +353,7 @@ namespace IdentityServer.Data.Migrations.IdentityServer.ConfigurationDb
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime?>("LastAccessed")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("LogoUri")
                         .HasMaxLength(2000)
@@ -396,7 +396,7 @@ namespace IdentityServer.Data.Migrations.IdentityServer.ConfigurationDb
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime?>("Updated")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("UserCodeType")
                         .HasMaxLength(100)
@@ -601,14 +601,14 @@ namespace IdentityServer.Data.Migrations.IdentityServer.ConfigurationDb
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
                         .HasMaxLength(2000)
                         .HasColumnType("varchar(2000)");
 
                     b.Property<DateTime?>("Expiration")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Type")
                         .IsRequired()
@@ -634,7 +634,7 @@ namespace IdentityServer.Data.Migrations.IdentityServer.ConfigurationDb
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
                         .HasMaxLength(1000)
@@ -665,7 +665,7 @@ namespace IdentityServer.Data.Migrations.IdentityServer.ConfigurationDb
                         .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime?>("Updated")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
