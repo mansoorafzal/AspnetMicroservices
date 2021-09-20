@@ -55,6 +55,7 @@ Ports:
 <br> Ordering Api = 8004
 <br> Shopping Aggregator = 8005
 <br> Web Application = 8006
+<br> Health Check Portal = 8007
 <br> Ocelot Api Gateway = 8010
 <br> Identify Server = 8015
 <br> MongoDB Client = 3000
