@@ -35,12 +35,12 @@ It includes following packages:
 <br> Microsoft.Extensions.Logging.Abstractions
 <br> Microsoft.VisualStudio.Azure.Containers.Tools.Targets
 <br> MongoDB.Driver
-<br> MySql.EntityFrameworkCore
 <br> Newtonsoft.Json
 <br> Npgsql
 <br> Ocelot
 <br> Ocelot.Cache.CacheManager
 <br> Polly
+<br> Pomelo.EntityFrameworkCore.MySql
 <br> SendGrid
 <br> Serilog.AspNetCore
 <br> Serilog.Enrichers.Environment
