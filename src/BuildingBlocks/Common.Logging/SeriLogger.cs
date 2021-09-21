@@ -28,6 +28,7 @@ namespace Common.Logging
                         })
                     .Enrich.WithProperty("Environment", context.HostingEnvironment.EnvironmentName)
                     .Enrich.WithProperty("Application", context.HostingEnvironment.ApplicationName)
+                    .Enrich.With<LogEnricher>()
                     .ReadFrom.Configuration(context.Configuration);
            };
     }
