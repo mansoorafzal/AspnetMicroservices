@@ -41,9 +41,10 @@ It includes following packages:
 <br> Ocelot.Cache.CacheManager
 <br> OpenTelemetry
 <br> OpenTelemetry.Exporter.Console
-<br> OpenTelemetry.Exporter.Zipkin
+<br> OpenTelemetry.Exporter.Jaeger
 <br> OpenTelemetry.Extensions.Hosting
 <br> OpenTelemetry.Instrumentation.AspNetCore
+<br> OpenTelemetry.Instrumentation.Http
 <br> Polly
 <br> Pomelo.EntityFrameworkCore.MySql
 <br> SendGrid
