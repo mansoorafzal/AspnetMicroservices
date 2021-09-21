@@ -13,9 +13,10 @@
     <PackageReference Include="Ocelot.Cache.CacheManager" Version="17.0.0" />
     <PackageReference Include="OpenTelemetry" Version="1.2.0-alpha3" />
     <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.2.0-alpha3" />
-    <PackageReference Include="OpenTelemetry.Exporter.Zipkin" Version="1.2.0-alpha3" />
+    <PackageReference Include="OpenTelemetry.Exporter.Jaeger" Version="1.2.0-alpha3" />
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.0.0-rc7" />
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.0.0-rc7" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.0.0-rc7" />
   </ItemGroup>
 
   <ItemGroup>
