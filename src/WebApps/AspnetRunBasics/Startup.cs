@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
+using OpenTelemetry;
 using OpenTelemetry.Exporter;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
@@ -59,6 +60,14 @@ namespace AspnetRunBasics
                 builder
                     .AddAspNetCoreInstrumentation()
                     .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("AspnetRunBasics"))
+                    .AddHttpClientInstrumentation()
+                    .AddSource(nameof(CatalogService))
+                    .AddJaegerExporter(options =>
+                    {
+                        options.AgentHost = "localhost";
+                        options.AgentPort = 6831;
+                        options.ExportProcessorType = ExportProcessorType.Simple;
+                    })
                     .AddConsoleExporter(options =>
                     {
                         options.Targets = ConsoleExporterOutputTargets.Console;
