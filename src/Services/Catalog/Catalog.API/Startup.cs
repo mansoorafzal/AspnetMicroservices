@@ -9,6 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using OpenTelemetry.Exporter;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 
 namespace Catalog.API
 {
@@ -23,7 +26,7 @@ namespace Catalog.API
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        {   
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -36,6 +39,17 @@ namespace Catalog.API
             services
                 .AddHealthChecks()
                 .AddMongoDb(Configuration["DatabaseSettings:ConnectionString"], "Catalog MongoDb Health", HealthStatus.Degraded);
+
+            services.AddOpenTelemetryTracing((builder) =>
+            {
+                builder
+                    .AddAspNetCoreInstrumentation()
+                    .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("Catalog.API"))
+                    .AddConsoleExporter(options =>
+                    {
+                        options.Targets = ConsoleExporterOutputTargets.Console;
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

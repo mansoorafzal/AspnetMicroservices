@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OpenTelemetry.Exporter;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 
 namespace Discount.Grpc
 {
@@ -29,6 +32,17 @@ namespace Discount.Grpc
             services
                 .AddHealthChecks()
                 .AddNpgSql(Configuration["DatabaseSettings:ConnectionString"]);
+
+            services.AddOpenTelemetryTracing((builder) =>
+            {
+                builder
+                    .AddAspNetCoreInstrumentation()
+                    .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("Discount.Grpc"))
+                    .AddConsoleExporter(options =>
+                    {
+                        options.Targets = ConsoleExporterOutputTargets.Console;
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

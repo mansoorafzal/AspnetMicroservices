@@ -6,6 +6,7 @@ using Ordering.API.Extensions;
 using Ordering.Infrastructure.Persistence;
 using Serilog;
 using Common.Logging;
+using System.Diagnostics;
 
 namespace Ordering.API
 {
@@ -13,6 +14,8 @@ namespace Ordering.API
     {
         public static void Main(string[] args)
         {
+            Activity.DefaultIdFormat = ActivityIdFormat.W3C;
+
             var host = CreateHostBuilder(args).Build();
 
             host.MigrateDatabase<OrderContext>((context, services) =>
@@ -26,6 +29,13 @@ namespace Ordering.API
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureLogging(loggingBuilder =>
+                {
+                    loggingBuilder.Configure(options =>
+                    {
+                        options.ActivityTrackingOptions = ActivityTrackingOptions.TraceId | ActivityTrackingOptions.SpanId;
+                    });
+                })
                 .UseSerilog(SeriLogger.Configure)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {

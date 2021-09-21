@@ -8,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using OpenTelemetry.Exporter;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using Ordering.API.EventBusConsumer;
 using Ordering.Application;
 using Ordering.Infrastructure;
@@ -67,6 +70,17 @@ namespace Ordering.API
 
                     return factory.CreateConnection();
                 });
+
+            services.AddOpenTelemetryTracing((builder) =>
+            {
+                builder
+                    .AddAspNetCoreInstrumentation()
+                    .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("Ordering.API"))
+                    .AddConsoleExporter(options =>
+                    {
+                        options.Targets = ConsoleExporterOutputTargets.Console;
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
