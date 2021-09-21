@@ -12,6 +12,11 @@
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="5.0.1" />
     <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="5.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.14" />
+    <PackageReference Include="OpenTelemetry" Version="1.2.0-alpha3" />
+    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.2.0-alpha3" />
+    <PackageReference Include="OpenTelemetry.Exporter.Zipkin" Version="1.2.0-alpha3" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.0.0-rc7" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.0.0-rc7" />
   </ItemGroup>
 
   <ItemGroup>
