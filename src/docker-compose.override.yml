@@ -244,3 +244,8 @@ services:
       - "ElasticConfiguration:Uri=http://elasticsearch:9200"
     ports:
       - "8007:80"
+
+  zipkin:
+    container_name: zipkin
+    ports:
+      - "9411:9411"
