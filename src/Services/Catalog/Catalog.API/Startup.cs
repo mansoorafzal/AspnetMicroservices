@@ -1,3 +1,4 @@
+using Catalog.API.Controllers;
 using Catalog.API.Data;
 using Catalog.API.Repositories;
 using HealthChecks.UI.Client;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using OpenTelemetry;
 using OpenTelemetry.Exporter;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
@@ -45,6 +47,14 @@ namespace Catalog.API
                 builder
                     .AddAspNetCoreInstrumentation()
                     .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("Catalog.API"))
+                    .AddHttpClientInstrumentation()
+                    .AddSource(nameof(CatalogController))
+                    .AddJaegerExporter(options =>
+                    {
+                        options.AgentHost = "localhost";
+                        options.AgentPort = 6831;
+                        options.ExportProcessorType = ExportProcessorType.Simple;
+                    })
                     .AddConsoleExporter(options =>
                     {
                         options.Targets = ConsoleExporterOutputTargets.Console;

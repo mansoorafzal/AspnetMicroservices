@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OpenTelemetry;
 using OpenTelemetry.Exporter;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
@@ -61,6 +62,14 @@ namespace IdentityServer
                 builder
                     .AddAspNetCoreInstrumentation()
                     .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("IdentityServer"))
+                    .AddHttpClientInstrumentation()
+                    .AddSource(nameof(HomeController))
+                    .AddJaegerExporter(options =>
+                    {
+                        options.AgentHost = "localhost";
+                        options.AgentPort = 6831;
+                        options.ExportProcessorType = ExportProcessorType.Simple;
+                    })
                     .AddConsoleExporter(options =>
                     {
                         options.Targets = ConsoleExporterOutputTargets.Console;

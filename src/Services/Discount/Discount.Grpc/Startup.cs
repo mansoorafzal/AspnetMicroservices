@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OpenTelemetry;
 using OpenTelemetry.Exporter;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
@@ -38,6 +39,14 @@ namespace Discount.Grpc
                 builder
                     .AddAspNetCoreInstrumentation()
                     .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("Discount.Grpc"))
+                    .AddHttpClientInstrumentation()
+                    .AddSource(nameof(DiscountService))
+                    .AddJaegerExporter(options =>
+                    {
+                        options.AgentHost = "localhost";
+                        options.AgentPort = 6831;
+                        options.ExportProcessorType = ExportProcessorType.Simple;
+                    })
                     .AddConsoleExporter(options =>
                     {
                         options.Targets = ConsoleExporterOutputTargets.Console;

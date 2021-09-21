@@ -8,9 +8,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using OpenTelemetry;
 using OpenTelemetry.Exporter;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using Ordering.API.Controllers;
 using Ordering.API.EventBusConsumer;
 using Ordering.Application;
 using Ordering.Infrastructure;
@@ -76,6 +78,14 @@ namespace Ordering.API
                 builder
                     .AddAspNetCoreInstrumentation()
                     .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("Ordering.API"))
+                    .AddHttpClientInstrumentation()
+                    .AddSource(nameof(OrderController))
+                    .AddJaegerExporter(options =>
+                    {
+                        options.AgentHost = "localhost";
+                        options.AgentPort = 6831;
+                        options.ExportProcessorType = ExportProcessorType.Simple;
+                    })
                     .AddConsoleExporter(options =>
                     {
                         options.Targets = ConsoleExporterOutputTargets.Console;
