@@ -97,8 +97,8 @@ services:
       context: .
       dockerfile: WebApps/WebStatus/Dockerfile
 
-  zipkin:
-    image: openzipkin/zipkin
+  jaeger:
+    image: jaegertracing/all-in-one:latest
 
 volumes:
   mongo_data:
