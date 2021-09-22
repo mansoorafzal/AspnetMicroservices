@@ -107,3 +107,4 @@ volumes:
   pgadmin_data:
   mysql_data:
   elasticsearch-data:
+  jaeger-data:
