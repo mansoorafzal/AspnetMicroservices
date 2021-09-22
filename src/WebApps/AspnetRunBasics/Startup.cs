@@ -62,6 +62,8 @@ namespace AspnetRunBasics
                     .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("AspnetRunBasics"))
                     .AddHttpClientInstrumentation()
                     .AddSource(nameof(CatalogService))
+                    .AddSource(nameof(BasketService))
+                    .AddSource(nameof(OrderService))
                     .AddJaegerExporter(options =>
                     {
                         options.AgentHost = "localhost";
