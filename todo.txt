@@ -1,0 +1,5 @@
+- health check in discount.grpc
+- database for web status
+- tracing in discount.grpc
+- jeager host and port from configuration
+- 
