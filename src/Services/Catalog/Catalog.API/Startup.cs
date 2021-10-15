@@ -1,6 +1,7 @@
 using Catalog.API.Controllers;
 using Catalog.API.Data;
 using Catalog.API.Repositories;
+using Common.Infrastructure;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using OpenTelemetry;
 using OpenTelemetry.Exporter;
@@ -60,6 +62,23 @@ namespace Catalog.API
                         options.Targets = ConsoleExporterOutputTargets.Console;
                     });
             });
+
+            services.AddAuthentication("Bearer")
+                .AddJwtBearer("Bearer", options =>
+                {
+                    options.Authority = Configuration["IdentityServer:Uri"];
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateAudience = false
+                    };
+                });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ClientIdPolicy", policy => policy.RequireClaim("client_id", "shop_mvc_client"));
+            });
+
+            services.AddConsulServices(Configuration.GetServiceConfig());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -53,9 +53,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "BuildingBlocks\Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Logging", "BuildingBlocks\Common.Logging\Common.Logging.csproj", "{AE8B4F5D-CFCC-4695-BD55-3B1163DE8FC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Policy", "BuildingBlocks\Common.Policy\Common.Policy.csproj", "{4EC29A06-30B0-4F55-A263-BDF04B6774B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Policy", "BuildingBlocks\Common.Policy\Common.Policy.csproj", "{4EC29A06-30B0-4F55-A263-BDF04B6774B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStatus", "WebApps\WebStatus\WebStatus.csproj", "{606CA7FA-CD71-445C-BB3F-4C851B064075}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStatus", "WebApps\WebStatus\WebStatus.csproj", "{606CA7FA-CD71-445C-BB3F-4C851B064075}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Infrastructure", "BuildingBlocks\Common.Infrastructure\Common.Infrastructure.csproj", "{7F66A588-F4B8-48A2-B834-760E31FC366F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,6 +137,10 @@ Global
 		{606CA7FA-CD71-445C-BB3F-4C851B064075}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{606CA7FA-CD71-445C-BB3F-4C851B064075}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{606CA7FA-CD71-445C-BB3F-4C851B064075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F66A588-F4B8-48A2-B834-760E31FC366F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F66A588-F4B8-48A2-B834-760E31FC366F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F66A588-F4B8-48A2-B834-760E31FC366F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F66A588-F4B8-48A2-B834-760E31FC366F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -161,6 +167,7 @@ Global
 		{AE8B4F5D-CFCC-4695-BD55-3B1163DE8FC7} = {3E819B9A-1C38-494A-BB5B-8D4E2F1C92C4}
 		{4EC29A06-30B0-4F55-A263-BDF04B6774B0} = {3E819B9A-1C38-494A-BB5B-8D4E2F1C92C4}
 		{606CA7FA-CD71-445C-BB3F-4C851B064075} = {5349F15D-FE3B-4721-9145-44E5B69BC7AC}
+		{7F66A588-F4B8-48A2-B834-760E31FC366F} = {3E819B9A-1C38-494A-BB5B-8D4E2F1C92C4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {04DEA6C6-2B59-4FD6-8C2E-54D3E1C3477D}
